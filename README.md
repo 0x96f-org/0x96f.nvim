@@ -98,6 +98,18 @@ require("0x96f").setup()
 vim.cmd.colorscheme("0x96f")
 ```
 
+### Transparent background
+
+```lua
+require("0x96f").setup({ transparent = true })
+vim.cmd.colorscheme("0x96f")
+```
+
+Transparency is disabled by default. It removes the main editor, sidebar, and
+statusline backgrounds while preserving popup, selection, and cursor-line colors.
+Configure the theme before setting up lualine so its backgrounds match.
+To restore the solid background, call `setup({ transparent = false })`.
+
 ### Traditional vim command
 
 ```vim

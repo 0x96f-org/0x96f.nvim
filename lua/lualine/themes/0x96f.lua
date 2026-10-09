@@ -102,4 +102,14 @@ local theme = {
 	},
 }
 
+if require("0x96f").config.transparent then
+	for _, sections in pairs(theme) do
+		for _, section in pairs(sections) do
+			if section.bg == colors.bg or section.bg == colors.bg_dark then
+				section.bg = "NONE"
+			end
+		end
+	end
+end
+
 return theme

@@ -1,4 +1,4 @@
-local M = {}
+local M = { config = { transparent = false } }
 
 -- Color palette extracted from VS Code theme
 local colors = {
@@ -506,6 +506,9 @@ local function apply_highlights()
 	}
 
 	for group, settings in pairs(highlights) do
+		if M.config.transparent and (settings.bg == colors.bg or settings.bg == colors.bg_dark) then
+			settings.bg = "NONE"
+		end
 		vim.api.nvim_set_hl(0, group, settings)
 	end
 end
@@ -513,6 +516,10 @@ end
 -- Setup function
 function M.setup(opts)
 	opts = opts or {}
+	if opts.transparent ~= nil then
+		M.config.transparent = opts.transparent
+		package.loaded["lualine.themes.0x96f"] = nil
+	end
 
 	-- Clear existing highlights
 	if vim.g.colors_name then
